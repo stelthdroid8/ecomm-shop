@@ -1,0 +1,24 @@
+{
+  "name": "ecomm-shop",
+  "version": "1.0.0",
+  "description": "An e-commerce shop that allows a user to pick items and add to the shopping cart. Written with nodeJS",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stelthdroid8/ecomm-shop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stelthdroid8/ecomm-shop/issues"
+  },
+  "homepage": "https://github.com/stelthdroid8/ecomm-shop#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
+  }
+}
