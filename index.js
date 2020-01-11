@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const middleware = require('./middleware/bodyParser.js');
 
 app.get('/', (req, res) => {
   res.send(`
@@ -17,17 +18,10 @@ app.get('/', (req, res) => {
 // app.get('/signup', (req, res) => {
 //   res.render(signup.html);
 // });
-app.post('/', (req, res) => {
-  req.on('data', data => {
-    const parsed = data.toString('utf8').split('&');
-    const formData = {};
-
-    for (let pair of parsed) {
-      const [key, value] = pair.split('=');
-      formData[key] = value;
-    }
-    console.log(formData);
-  });
+app.post('/', middleware.bodyParser, (req, res) => {
+  //   middleware.bodyParser(req, res);
+  console.log(req.body);
+  res.send('account created');
 });
 
 app.listen(3000, () => {
