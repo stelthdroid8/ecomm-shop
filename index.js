@@ -1,6 +1,9 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
-const middleware = require('./middleware/bodyParser.js');
+app.use(bodyParser.urlencoded({ extended: true }));
+// const middleware = require('./middleware/bodyParser.js');
 
 app.get('/', (req, res) => {
   res.send(`
@@ -18,7 +21,7 @@ app.get('/', (req, res) => {
 // app.get('/signup', (req, res) => {
 //   res.render(signup.html);
 // });
-app.post('/', middleware.bodyParser, (req, res) => {
+app.post('/', (req, res) => {
   //   middleware.bodyParser(req, res);
   console.log(req.body);
   res.send('account created');
