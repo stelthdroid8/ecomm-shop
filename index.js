@@ -62,9 +62,20 @@ app.get('/signin', (req, res) => {
   `);
 });
 
-// app.post('/signin', async (req, res) => {
+app.post('/signin', async (req, res) => {
+  const { email, password } = req.body;
 
-// });
+  const user = await usersRepo.getOneBy({ email });
+  if (!user) {
+    return res.send('You must sign up before you can sign in!');
+  }
+  if (user.password != password) {
+    return res.send('Invalid password');
+  }
+
+  req.session.userId = user.id;
+  res.send('you are now signed in');
+});
 app.listen(3000, () => {
   console.log('listening on port 3000');
 });
