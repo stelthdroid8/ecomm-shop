@@ -28,5 +28,6 @@ app.post('/', (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log('up and running');
+  // console.log('up and running');
+  console.log('listening on port 3000');
 });
