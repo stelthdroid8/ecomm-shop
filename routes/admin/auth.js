@@ -20,7 +20,9 @@ router.post(
   [requireEmail, requirePassword, requirePasswordConfirmation],
   async (req, res) => {
     const errors = validationResult(req);
-    console.log(errors);
+    if (!errors.isEmpty()) {
+      return res.send(signupTemplate({ req, errors }));
+    }
     // info from form
     const { email, password, passwordConfirmation } = req.body;
     // create the user in the repo
