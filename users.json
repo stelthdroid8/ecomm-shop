@@ -1,10 +1,5 @@
 [
   {
-    "email": "test@test.com",
-    "password": "123",
-    "passwordConfirmation": "123"
-  },
-  {
     "email": "asdasdad",
     "password": "123",
     "id": "09780448"
@@ -13,5 +8,10 @@
     "email": "test1@test.com",
     "password": "password",
     "id": "f2c0dede"
+  },
+  {
+    "email": "test2@test.com",
+    "password": "130301087b92dba6b1b55399ac5b665e7e9483a57afb1921a666cfd643af7363bf777e33776fa90e75b77c4ab1cbcbdc266f900347b243d9c3af06fae7c4b574.eedbfce1d3c55364",
+    "id": "9ba4e4d8"
   }
 ]
