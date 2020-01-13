@@ -9,6 +9,7 @@ const app = express();
 app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(
   cookieSession({
     keys: ['jasnda2janjsdi4j4311djfkdsj9']
