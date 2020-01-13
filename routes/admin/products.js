@@ -1,5 +1,5 @@
 const express = require('express');
-const router = exprss.Router();
+const router = express.Router();
 
 // GET /products
 router.get('/admin/products', (req, res) => {});
