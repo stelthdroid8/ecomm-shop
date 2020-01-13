@@ -1,4 +1,6 @@
 const express = require('express');
+const productsRepo = require('../../repositories/products');
+const productsNewTemplate = require('../../views/admin/products/new');
 const router = express.Router();
 
 // GET /products
@@ -6,7 +8,9 @@ router.get('/admin/products', (req, res) => {});
 
 // GET /product/new
 //form to upload new products
-router.get('/admin/products/new', (req, res) => {});
+router.get('/admin/products/new', (req, res) => {
+  res.send(productsNewTemplate({}));
+});
 
 // POST /product/new
 //submit new products to DB
