@@ -24,7 +24,7 @@ router.post(
   '/admin/products/new',
   upload.single('image'),
   [requireTitle, requirePrice],
-  handleErrors({ productsNewTemplate }),
+  handleErrors(productsNewTemplate),
   async (req, res) => {
     const image = req.file.buffer.toString('base64');
     const { title, price } = req.body;
