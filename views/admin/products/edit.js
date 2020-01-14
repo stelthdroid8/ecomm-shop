@@ -1,7 +1,7 @@
 const layout = require('../layout');
 const { getError } = require('../../helpers');
 
-module.exports = ({ product }) => {
+module.exports = ({ errors, product }) => {
   return layout({
     content: `
       <div class="columns is-centered">
@@ -10,15 +10,19 @@ module.exports = ({ product }) => {
 
           <form method="POST" enctype="multipart/form-data">
             <div class="field">
-              <label class="label">Title</label>
-              <input class="input" value="${product.title}" name="title">
-
+                <label class="label">Title</label>
+                <input class="input" placeholder="title" value="${
+                  product.title
+                }" name="title">
+                <p class="help is-danger">${getError(errors, 'title')}</p>
             </div>
             
             <div class="field">
-              <label class="label">Price</label>
-              <input class="input" value="${product.price}" name="price">
-              
+                <label class="label">Price</label>
+                <input class="input" placeholder="price" value="${
+                  product.price
+                }" name="price">
+                <p class="help is-danger">${getError(errors, 'price')}</p>
             </div>
             
             <div class="field">
