@@ -77,5 +77,12 @@ router.post(
 
 // DELETE /products/productID
 //delete the product
-router.delete('/admin/products/productID', (req, res) => {});
+router.post(
+  '/admin/products/:productID/delete',
+  requireAuth,
+  async (req, res) => {
+    await productsRepo.delete(req.params.productID);
+    res.redirect('/admin/products');
+  }
+);
 module.exports = router;
