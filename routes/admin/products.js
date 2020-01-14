@@ -1,5 +1,4 @@
 const express = require('express');
-
 const multer = require('multer');
 
 const { handleErrors } = require('./middlewares');
@@ -10,20 +9,16 @@ const { requireTitle, requirePrice } = require('./validators');
 
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
-// GET /products
+
 router.get('/admin/products', async (req, res) => {
   const products = await productsRepo.getAll();
   res.send(productsIndexTemplate({ products }));
 });
 
-// GET /product/new
-//form to upload new products
 router.get('/admin/products/new', (req, res) => {
   res.send(productsNewTemplate({}));
 });
 
-// POST /product/new
-//submit new products to DB
 router.post(
   '/admin/products/new',
   upload.single('image'),
@@ -33,7 +28,9 @@ router.post(
     const image = req.file.buffer.toString('base64');
     const { title, price } = req.body;
     await productsRepo.create({ title, price, image });
-    res.send('submitted');
+
+    // res.redirect('/admin/products');
+    res.send('you have submitted a product');
   }
 );
 
@@ -48,5 +45,4 @@ router.put('/admin/products/:productID', (req, res) => {});
 // DELETE /products/productID
 //delete the product
 router.delete('/admin/products/productID', (req, res) => {});
-
 module.exports = router;
