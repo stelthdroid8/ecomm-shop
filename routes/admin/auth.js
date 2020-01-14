@@ -53,8 +53,12 @@ router.post(
     const { email } = req.body;
     const user = await usersRepo.getOneBy({ email });
     req.session.userId = user.id;
+<<<<<<< HEAD
     // res.send('you are now signed in');
     res.redirect('/admin/products/');
+=======
+    res.redirect('/admin/products');
+>>>>>>> 82d752b2dbff78b31be22a5aa8932ecf032c9e98
   }
 );
 
