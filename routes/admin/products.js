@@ -5,6 +5,7 @@ const { handleErrors, requireAuth } = require('./middlewares');
 const productsRepo = require('../../repositories/products');
 const productsNewTemplate = require('../../views/admin/products/new');
 const productsIndexTemplate = require('../../views/admin/products/index');
+const productsEditTemplate = require('../../views/admin/products/edit');
 const { requireTitle, requirePrice } = require('./validators');
 
 const router = express.Router();
@@ -37,7 +38,15 @@ router.post(
 
 // GET /products/productID
 //bring up editable form
-router.get('/admin/products/:productID', (req, res) => {});
+router.get('/admin/products/:productID/edit', requireAuth, async (req, res) => {
+  const product = await productsRepo.getOne(req.params.productID);
+
+  if (!product) {
+    return res.send('product not found!');
+  }
+  // console.log({ product });
+  res.send(productsEditTemplate({ product }));
+});
 
 //  PUT /products/productID
 //submit the edit
