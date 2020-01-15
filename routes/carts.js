@@ -1,5 +1,7 @@
 const express = require('express');
 const cartsRepo = require('../repositories/carts');
+const productsRepo = require('../repositories/products');
+const cartShowTemplate = require('../views/carts/show');
 const router = express.Router();
 
 router.post('/cart/products/', async (req, res) => {
@@ -26,7 +28,25 @@ router.post('/cart/products/', async (req, res) => {
     items: cart.items
   });
   //   console.log(cart);
-  res.send('product added');
+  //   res.send('product added');
+  res.redirect('/cart');
+});
+
+router.get('/cart', async (req, res) => {
+  //check for cart ID
+  if (!req.session.cartId) {
+    //if no cart redirect
+    return res.redirect('/');
+  }
+  const cart = await cartsRepo.getOne(req.session.cartId);
+
+  for (let item of cart.items) {
+    const product = await productsRepo.getOne(item.id);
+
+    item.product = product;
+  }
+
+  res.send(cartShowTemplate({ items: cart.items }));
 });
 
 module.exports = router;
